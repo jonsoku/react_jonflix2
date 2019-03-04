@@ -74,3 +74,65 @@
     
     장점 : className을 임의화해 css가 global이 아닌 local이 되게 만드는 것.
     단점 : css에서 클래스명을 자바스크립트처럼 줘야한다. 여전히 클래스명을 기억해야한다.
+
+
+
+## `yarn add styled-components` 
+    자바스크립트로 css 를 !! 
+    적용하고싶은 컴포넌트에 
+    import styled from "styled-components";
+    
+### styled-components : Link
+    - Link 를 사용하기위해서는 import 해야한다.  import { Link } from "react-router-dom";
+    - 이 Link는 해당 페이지가 내 어플리케이션에 있으면, 그곳으로 브라우져한 방식으로 가지 않고,
+    - JavaScript의 방식으로 가게 해준다.
+    - 보통 a태그에 Link를 거는듯
+    - a 태그에 걸기 싫으면 그냥 const SLink = styled(Link)``;
+    - href 는 React Router에는 존재하지 않는다. 그러므로 수정 ! href => to
+    
+    ❗️ You should not use <Link> outside a <Router> 에러 가 떴을때 
+    - Header를 Router.js 안으로 넣는다.
+        <Router>
+            <>
+                <Header/>
+                <Switch>
+                    <Route path="/" exact component={Home} />
+                    <Route path="/tv" exact component={TV} />
+                    <Route path="/tv/popular" render={()=> <h1>Popular</h1>} />
+                    <Route path="/search" component={Search} />
+                    <Redirect from ="*" to="/" />
+                </Switch>
+            </>
+        </Router>
+        
+### styled-components : GlobalStyles and Header
+    Global 스타일을 적용하는 이유는 해당 사이트의 폰트를 설정하거나 SC를 설치하거나..
+### `yarn add styled-reset`
+    - css 초기화 작업 (겁나편한데?)
+    - Components 아래 GlobalStyles.js 파일을 생성한다.
+    
+        import { createGlobalStyle } from "styled-components";
+        import reset from "styled-reset";
+        
+        const globalStyles = createGlobalStyle`
+          ${reset};
+          a{
+            text-decoration: none;
+            color: inherit;
+          }
+          *{
+            box-sizing: border-box;
+          }
+          body{
+          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+          font-size: 14px;
+          background-color: rgba(20,20,20,1);
+          }
+        `;
+        
+        export default globalStyles;
+    
+    
+    - App.js에 임포트 
+        import GlobalStyles from "Components/GlobalStyles";
+        <GlobalStyles />
