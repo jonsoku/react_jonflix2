@@ -64,3 +64,13 @@
     Components 아래 Header 폴더를 만들고 Header.js 와  index.js 를 넣는다.
     폴더를 경로값으로 지정해주면 그 폴더 내의 index.js파일을 읽는다.
 
+## css module
+    우리의 className을 임의화해 css가 global이 아닌 local이 되게 만드는 것.
+    css파일명을 바꿔준다 (ex : Header.moduel.css)
+    그리고 Header.js에서 자바스크립트를 임포트할 때처럼 변경해준다.
+    (ex : import styles from "./Header.moduel.css")
+    className={styles.navList}와 같이 적용
+    이것도 여전히 자바스크립트와 css의 거리가 떨어져있다.
+    
+    장점 : className을 임의화해 css가 global이 아닌 local이 되게 만드는 것.
+    단점 : css에서 클래스명을 자바스크립트처럼 줘야한다. 여전히 클래스명을 기억해야한다.
